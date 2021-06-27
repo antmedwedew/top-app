@@ -40,6 +40,10 @@
 	margin-left: 10px;
 }
 
+.arrow svg {
+	transition: all 0.3s;
+}
+
 .down {
 	transition: all 0.3s;
 	transform: rotate(90deg);

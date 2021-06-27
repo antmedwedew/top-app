@@ -1,7 +1,7 @@
 import styles from './Button.module.css';
 import classNames from "classnames";
-import ArrowIcon from './arrow.svg';
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import { ArrowIcon } from '../../public/icons/ArrowIcon';
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
   arrow?: 'right' | 'down' | 'none';
 }
 
-export const Button = ({ appearance, arrow = 'none', children, className, ...props }: ButtonProps): JSX.Element => {
+export const Button: React.FC<ButtonProps> = ({ appearance, arrow = 'none', children, className, ...props }: ButtonProps): JSX.Element => {
   return (
     <button
       className={classNames(styles.button, className, {
