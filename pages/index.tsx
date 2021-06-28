@@ -1,7 +1,9 @@
-import React from "react";
-import { Htag, Button, P, Tag } from "../components";
+import React, { useState } from "react";
+import { Htag, Button, P, Tag, Rating } from "../components";
 
 export default function Home(): JSX.Element {
+  const [rating, setRating] = useState<number>(4);
+
   return (
     <>
       <Htag tag="h1">Заголовок 1 уровня</Htag>
@@ -14,6 +16,7 @@ export default function Home(): JSX.Element {
       <Tag color="ghost">ghost</Tag>
       <Tag color="grey">grey</Tag>
       <Tag color="primary" >primary</Tag>
+      <Rating rating={rating} isEditable={true} setRating={setRating} />
     </>
   );
 }

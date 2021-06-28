@@ -1,6 +1,6 @@
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import styles from './Button.module.css';
 import classNames from "classnames";
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { ArrowIcon } from '../../public/icons/ArrowIcon';
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {

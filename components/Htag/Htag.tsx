@@ -1,5 +1,5 @@
-import styles from './Htag.module.css';
 import React from "react";
+import styles from './Htag.module.css';
 
 interface HtagProps {
   tag: 'h1' | 'h2' | 'h3';

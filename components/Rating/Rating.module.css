@@ -1,0 +1,15 @@
+.filled {
+	fill: var(--primary);
+
+	transition: fill var(--def-duration);
+}
+
+.star {
+	margin-right: 5px;
+
+	transition: fill var(--def-duration);
+}
+
+.editable {
+	cursor: pointer;
+}

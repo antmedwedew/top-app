@@ -5,7 +5,7 @@
 	padding: 10px;
 
 	cursor: pointer;
-	transition: all 0.3s ease-in-out;
+	transition: all var(--def-duration) ease-in-out;
 	text-align: center;
 
 	border: none;
@@ -41,11 +41,11 @@
 }
 
 .arrow svg {
-	transition: all 0.3s;
+	transition: all var(--def-duration);
 }
 
 .down {
-	transition: all 0.3s;
+	transition: all var(--def-duration);
 	transform: rotate(90deg);
 }
 

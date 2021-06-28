@@ -11,6 +11,9 @@
 	--grey-light: #EBEBEB;
 	--yellow: #DCB44E;
 	--background: #E5E5E5;
+
+	/* transitions */
+	--def-duration: 0.3s;
 }
 
 html,
@@ -32,4 +35,6 @@ a {
 
 * {
 	box-sizing: border-box;
+
+	outline: none;
 }
