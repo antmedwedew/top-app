@@ -1,6 +1,4 @@
-import React from 'react';
-import styles from './Layout.module.css';
-import classNames from "classnames";
+import React, { FunctionComponent } from 'react';
 import { Header } from './Header/Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
@@ -9,7 +7,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps): JSX.Element => {
+const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps): JSX.Element => {
   return (
     <>
       <Header />
@@ -22,4 +20,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps): JSX.El
       <Footer />
     </>
   );
+};
+
+export const withLayout = <T extends Record<string, unknown>>(Component: FunctionComponent<T>) => {
+  return function withLayoutComponent(props: T): JSX.Element {
+    return (
+      <Layout>
+        <Component {...props} />
+      </Layout>
+    );
+  };
 };
