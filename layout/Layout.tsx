@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import styles from './Layout.module.css';
 import { Header } from './Header/Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
@@ -9,16 +10,14 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps): JSX.Element => {
   return (
-    <>
-      <Header />
-      <div>
-        <Sidebar />
-        <div>
-          {children}
-        </div>
+    <div className={styles.wrapper}>
+      <Header className={styles.header} />
+      <Sidebar className={styles.sidebar} />
+      <div className={styles.body}>
+        {children}
       </div>
-      <Footer />
-    </>
+      <Footer className={styles.footer} />
+    </div>
   );
 };
 

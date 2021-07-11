@@ -4,9 +4,9 @@ import classNames from "classnames";
 
 interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
-export const Sidebar: React.FC<SidebarProps> = ({ ...props }: SidebarProps): JSX.Element => {
+export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
   return (
-    <div {...props}>
+    <div className={classNames(className, styles.sidebar)} {...props}>
       Sidebar
     </div>
   );

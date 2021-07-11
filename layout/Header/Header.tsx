@@ -4,9 +4,9 @@ import classNames from "classnames";
 
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
-export const Header: React.FC<HeaderProps> = ({ ...props }: HeaderProps): JSX.Element => {
+export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   return (
-    <div {...props}>
+    <div className={classNames(className, styles.header)} {...props}>
       Header
     </div>
   );
