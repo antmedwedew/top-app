@@ -1,5 +1,9 @@
-export * from './Htag/Htag';
-export * from './Button/Button';
-export * from './P/P';
-export * from './Tag/Tag';
+// UI
+export * from './UI/Htag/Htag';
+export * from './UI/Button/Button';
+export * from './UI/P/P';
+export * from './UI/Tag/Tag';
+// -----
+
 export * from './Rating/Rating';
+export * from './Menu/Menu';
