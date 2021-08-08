@@ -1,3 +1,77 @@
 .menu {
+	color: var(--gray-dark);
+}
 
+/* first level menu */
+.firstLevel {
+	display: grid;
+	align-items: center;
+
+	margin-top: 20px;
+
+	transition: color var(--def-duration);
+
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 25px;
+	grid-template-columns: 24px 1fr;
+	gap: 20px;
+}
+
+.firstLevel svg {
+	transition: fill var(--def-duration);
+}
+
+.firstLevelActive,
+.firstLevel:hover {
+	color: var(--primary);
+}
+
+.firstLevelActive svg,
+.firstLevel:hover svg {
+	fill: var(--primary);
+}
+
+.secondLevel {
+	margin-bottom: 10px;
+
+	cursor: pointer;
+	text-transform: uppercase;
+
+	font-size: 12px;
+	font-weight: 300;
+	line-height: 16px;
+}
+
+/* second level menu */
+.secondBlock {
+	margin: 15px 0 0 12px;
+	padding-left: 32px;
+
+	border-left: 1px solid #DFDFDF;
+}
+
+.secondLeveelBlockOpened:last-child {
+	margin-bottom: 20px;
+}
+
+/* third level menu */
+.thirdLevel {
+	display: block;
+
+	margin-bottom: 10px;
+
+	cursor: pointer;
+
+	transition: color var(--def-duration);
+
+	font-size: 14px;
+
+	font-weight: 500;
+	line-height: 19px;
+}
+
+.thirdLevelActive,
+.thirdLevel:hover {
+	color: var(--primary);
 }
