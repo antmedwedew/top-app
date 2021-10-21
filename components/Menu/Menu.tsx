@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../context/app.context';
 import { firstLevelMenuItem, PageItem } from '../../interfaces/menu.interface';
-import { firstLevelMenu } from '../../helpers/firstLevelMenu';
+import { firstLevelMenu } from './firstLevelMenu';
 
 import styles from './Menu.module.css';
 import classNames from "classnames";

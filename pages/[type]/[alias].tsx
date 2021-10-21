@@ -6,7 +6,7 @@ import { MenuItem } from "../../interfaces/menu.interface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/topPage.interface";
 import { ProductModel } from "../../interfaces/product.interface";
 import { ParsedUrlQuery } from "querystring";
-import { firstLevelMenu } from "../../helpers/firstLevelMenu";
+import { firstLevelMenu } from "../../components/Menu/firstLevelMenu";
 
 
 interface CourseProps extends Record<string, unknown> {

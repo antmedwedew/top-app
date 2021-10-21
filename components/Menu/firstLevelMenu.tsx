@@ -1,10 +1,10 @@
-import { TopLevelCategory } from '../interfaces/topPage.interface';
-import { firstLevelMenuItem } from '../interfaces/menu.interface';
+import { TopLevelCategory } from '../../interfaces/topPage.interface';
+import { firstLevelMenuItem } from '../../interfaces/menu.interface';
 
-import { CapIcon } from '../public/icons/CapIcon';
-import { CloudIcon } from '../public/icons/CloudIcon';
-import { BookIcon } from '../public/icons/BookIcon';
-import { BoxIcon } from '../public/icons/BoxIcon';
+import { CapIcon } from '../../public/icons/CapIcon';
+import { CloudIcon } from '../../public/icons/CloudIcon';
+import { BookIcon } from '../../public/icons/BookIcon';
+import { BoxIcon } from '../../public/icons/BoxIcon';
 
 
 export const firstLevelMenu: firstLevelMenuItem[] = [

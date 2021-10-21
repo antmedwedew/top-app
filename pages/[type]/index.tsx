@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { withLayout } from "../../layout/Layout";
 import { MenuItem } from "../../interfaces/menu.interface";
-import { firstLevelMenu } from "../../helpers/firstLevelMenu";
+import { firstLevelMenu } from "../../components/Menu/firstLevelMenu";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import axios from 'axios';
