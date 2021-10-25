@@ -1,3 +1,10 @@
 .sidebar {
-	cursor: pointer; /* пока что для линта */
+	display: grid;
+	cursor: pointer;
+	align-content: flex-start;
+	gap: 20px;
+}
+
+.logo {
+	margin-top: 35px;
 }
