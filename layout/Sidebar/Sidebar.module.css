@@ -1,7 +1,8 @@
 .sidebar {
 	display: grid;
-	cursor: pointer;
 	align-content: flex-start;
+
+	cursor: pointer;
 	gap: 20px;
 }
 
