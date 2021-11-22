@@ -8,3 +8,5 @@ export * from './UI/Tag/Tag';
 export * from './Rating/Rating';
 export * from './Menu/Menu';
 export * from './Card/Card';
+export * from './HhData/HhData';
+export * from './Advantages/Advantages';

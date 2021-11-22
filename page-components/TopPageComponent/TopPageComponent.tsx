@@ -1,11 +1,9 @@
 import React from "react";
-import { Card, Htag, Tag } from "../../components";
+import { Advantages, HhDataBlock, Htag, P, Tag, } from "../../components";
 import { ProductModel } from "../../interfaces/product.interface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/topPage.interface";
 
 import styles from "./TopPageComponent.module.css";
-import { RoundStarIcon } from '../../public/icons/RoundStarIcon';
-import { priceRu } from "../../helpers/helpers";
 
 interface TopPageComponentProps {
   firstCategory: TopLevelCategory;
@@ -22,55 +20,30 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
         <span>Сортировка</span>
       </div>
 
-      <div>
+      {/* <div>
         {products && products.map(p => (<div key={p._id}>{p.title}</div>))}
-      </div>
+      </div> */}
 
-      <div className={styles.hhTitle}>
-        <Htag tag="h2">Вакансии - {page.category}</Htag>
-        {products && <Tag color="red" size="m">hh.ru</Tag>}
-      </div>
+      {firstCategory === TopLevelCategory.Courses && page.hh && <>
+        <div className={styles.hhTitle}>
+          <Htag tag="h2">Вакансии - {page.category}</Htag>
+          {products && <Tag color="red" size="m">hh.ru</Tag>}
+        </div> <HhDataBlock {...page.hh} />
+      </>}
 
-      {
-        firstCategory === TopLevelCategory.Courses &&
-        <div className={styles.hh}>
-          <Card className={styles.hhCard}>
-            <div className={styles.hhCardTitle}>Всего вакансий</div>
-            <div className={styles.hhCardCount}>{page.hh?.count}</div>
-          </Card>
-          <Card className={styles.salary}>
-            <div className={styles.salaryBlock}>
-              <div className={styles.salaryTitle}>Начальный</div>
-              <div className={styles.salaryValue}>{page.hh?.juniorSalary && priceRu(page.hh.juniorSalary)}</div>
-              <div className={styles.salaryRating}>
-                <RoundStarIcon color="#FC836D" />
-                <RoundStarIcon />
-                <RoundStarIcon />
-              </div>
-            </div>
+      {page.advantages && page.advantages.length > 0 && page.advantages[0].title !== '' && <>
+        <Htag tag="h2">Преимущества</Htag>
+        <Advantages advantages={page.advantages} />
+      </>}
 
-            <div className={styles.salaryBlock}>
-              <div className={styles.salaryTitle}>Средний</div>
-              <div className={styles.salaryValue}>{page.hh?.middleSalary && priceRu(page.hh?.middleSalary)}</div>
-              <div className={styles.salaryRating}>
-                <RoundStarIcon color="#FC836D" />
-                <RoundStarIcon color="#FC836D" />
-                <RoundStarIcon />
-              </div>
-            </div>
+      {page.seoText && <P size='l'>{page.seoText}</P>}
 
-            <div className={styles.salaryBlock}>
-              <div className={styles.salaryTitle}>Профессионал</div>
-              <div className={styles.salaryValue}>{page.hh?.seniorSalary && priceRu(page.hh?.seniorSalary)}</div>
-              <div className={styles.salaryRating}>
-                <RoundStarIcon color="#FC836D" />
-                <RoundStarIcon color="#FC836D" />
-                <RoundStarIcon color="#FC836D" />
-              </div>
-            </div>
-          </Card>
-        </div>
-      }
-    </div>
+      {page.tags && <>
+        <Htag tag="h2">Получаемые навыки</Htag>
+        {page.tags.map(tag => (
+          <Tag key={tag} color="primary" mrgnBottom={true}>{tag}</Tag>
+        ))}
+      </>}
+    </div >
   );
 };

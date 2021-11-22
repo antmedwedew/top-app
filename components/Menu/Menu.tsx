@@ -9,7 +9,7 @@ import styles from './Menu.module.css';
 import classNames from "classnames";
 
 
-export const Menu = (): JSX.Element => {
+export const Menu: React.FC = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);
   const router = useRouter();
 
