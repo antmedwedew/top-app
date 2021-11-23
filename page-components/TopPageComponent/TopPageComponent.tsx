@@ -1,5 +1,5 @@
 import React from "react";
-import { Advantages, HhDataBlock, Htag, P, Tag, } from "../../components";
+import { Advantages, HhDataBlock, Htag, Tag, } from "../../components";
 import { ProductModel } from "../../interfaces/product.interface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/topPage.interface";
 
@@ -36,7 +36,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
         <Advantages advantages={page.advantages} />
       </>}
 
-      {page.seoText && <P size='l'>{page.seoText}</P>}
+      {page.seoText && <div className={styles.seoText} dangerouslySetInnerHTML={{ __html: page.seoText }} />}
 
       {page.tags && <>
         <Htag tag="h2">Получаемые навыки</Htag>
