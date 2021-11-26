@@ -1,0 +1,32 @@
+.sort {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 40px;
+
+	cursor: pointer;
+}
+
+.sortItem {
+	display: grid;
+	align-items: center;
+
+	font-size: 16px;
+	grid-template-columns: 20px auto;
+	gap: 8px;
+}
+
+.sortItem svg {
+	transition: opacity var(--def-duration);
+
+	opacity: 0;
+}
+
+.active {
+	color: var(--primary);
+
+	font-weight: 700;
+}
+
+.active svg {
+	opacity: 1;
+}

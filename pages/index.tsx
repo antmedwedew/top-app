@@ -12,9 +12,7 @@ interface HomeProps extends Record<string, unknown> {
 function Home({ menu }: HomeProps): JSX.Element {
 
   return (
-    <>
-
-    </>
+    <></>
   );
 }
 
