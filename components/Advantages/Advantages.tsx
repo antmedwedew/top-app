@@ -3,7 +3,7 @@ import { TopPageAdvantage } from "../../interfaces/topPage.interface";
 import styles from './Advantages.module.css';
 
 import { CheckRoundIcon } from "../../public/icons/CheckRoundIcon";
-import { P } from "../UI/P/P";
+import { P } from "../P/P";
 
 interface advantagesProps {
   advantages: TopPageAdvantage[]
