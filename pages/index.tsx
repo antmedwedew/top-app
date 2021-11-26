@@ -3,6 +3,7 @@ import React from "react";
 import { withLayout } from "../layout/Layout";
 import axios from 'axios';
 import { MenuItem } from "../interfaces/menu.interface";
+import { Input } from "../components";
 
 interface HomeProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -12,7 +13,9 @@ interface HomeProps extends Record<string, unknown> {
 function Home({ menu }: HomeProps): JSX.Element {
 
   return (
-    <></>
+    <>
+      <Input placeholder="Имя" />
+    </>
   );
 }
 
