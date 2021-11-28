@@ -1,8 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import styles from './Input.module.css';
 import classNames from 'classnames';
 
-interface InputProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 }
 
 export const Input = ({ className, ...props }: InputProps): JSX.Element => {
