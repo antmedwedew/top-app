@@ -1,10 +1,10 @@
-import React, { DetailedHTMLProps, ThHTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import styles from './Sort.module.css';
 import classNames from "classnames";
 
 import { SortIcon } from '../../public/icons/SortIcon';
 
-interface SortProps extends DetailedHTMLProps<ThHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface SortProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   sort: SortEnum
   setSort: (sort: SortEnum) => void
 }

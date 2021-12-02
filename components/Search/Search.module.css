@@ -1,0 +1,21 @@
+.search {
+	position: relative;
+
+	width: 100%;
+}
+
+.searchInput {
+	width: 100%;
+}
+
+.searchBtn {
+	position: absolute;
+	top: 50%;
+	right: 3px;
+
+	width: 30px;
+	height: 30px;
+	padding: 0;
+
+	transform: translateY(-50%);
+}
