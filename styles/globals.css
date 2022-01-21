@@ -34,7 +34,9 @@ a {
 	color: inherit;
 }
 
-* {
+*,
+html,
+body {
 	box-sizing: border-box;
 
 	outline: none;

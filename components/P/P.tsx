@@ -3,8 +3,8 @@ import styles from './P.module.css';
 import classNames from "classnames";
 
 interface PProps extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
-  children: React.ReactNode;
   size?: 's' | 'm' | 'l';
+  children: React.ReactNode;
 }
 
 export const P = ({ size = 'm', children, className, ...props }: PProps): JSX.Element => {
