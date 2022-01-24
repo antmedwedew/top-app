@@ -30,3 +30,9 @@
 .active svg {
 	opacity: 1;
 }
+
+@media screen and (max-width: 900px) {
+	.sort {
+		gap: 25px;
+	}
+}

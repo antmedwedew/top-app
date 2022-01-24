@@ -51,17 +51,19 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
           </div>
         ))}
       </div>
-      <div className={styles.advBlock}>
-        {product.advantages && <div className={styles.advantages}>
-          <div className={styles.advBlockTitle}>Преимущества</div>
-          <P>{product.advantages}</P>
-        </div>}
-        {product.disadvantages && <div className={styles.disadvantages}>
-          <div className={styles.advBlockTitle}>Недостатки</div>
-          <P>{product.disadvantages}</P>
-        </div>}
-      </div>
-      <div className={styles.lineBlock}><hr className={styles.line} /></div>
+      {product.advantages || product.disadvantages ?
+        <div className={styles.advBlock}>
+          {product.advantages && <div className={styles.advantages}>
+            <div className={styles.advBlockTitle}>Преимущества</div>
+            <P>{product.advantages}</P>
+          </div>}
+          {product.disadvantages && <div className={styles.disadvantages}>
+            <div className={styles.advBlockTitle}>Недостатки</div>
+            <P>{product.disadvantages}</P>
+          </div>}
+        </div> : null
+      }
+      <div className={classNames(styles.lineBlock, styles.lineBlock2)}><hr className={styles.line} /></div>
       <div className={styles.actions}>
         <Button appearance='primary'>Узнать подробнее</Button>
         <Button appearance='ghost' arrow="right">Читать отзывы</Button>
