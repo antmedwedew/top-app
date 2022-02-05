@@ -1,10 +1,11 @@
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import Image from 'next/image';
-import { Button, Card, Htag, Rating, Tag, P, Review } from "..";
+import { Button, Card, Htag, Rating, Tag, P, Review, ReviewForm } from "..";
 import { ProductModel } from "../../interfaces/product.interface";
 import styles from './Product.module.css';
 import classNames from 'classnames';
 import { decOfNumber, priceRu } from "../../helpers/helpers";
+import { match } from "assert";
 
 interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: ProductModel
@@ -82,12 +83,13 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
         [styles.opened]: isReviewOpened,
         [styles.closed]: !isReviewOpened
       })}>
-        {product.reviews.map(review => (
-          <>
-            <Review key={review._id} review={review} />
+        {product.reviews.map((review) => (
+          <div key={review._id}>
+            <Review review={review} />
             <div className={classNames(styles.lineBlock, styles.lineBlock2)}><hr className={styles.line} /></div>
-          </>
+          </div>
         ))}
+        <ReviewForm productId={product._id} />
       </Card>
     </>
   );

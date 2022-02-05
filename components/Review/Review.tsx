@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { DetailedHTMLProps, ThHTMLAttributes } from "react";
 import { ReviewModel } from "../../interfaces/product.interface";
 import { Rating } from "..";
@@ -6,6 +5,7 @@ import { P } from "..";
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
+import classNames from "classnames";
 import styles from './Review.module.css';
 
 import { UserIcon } from "../../public/icons/UserIcon";

@@ -1,0 +1,88 @@
+.reviewForm {
+	display: grid;
+	align-items: center;
+
+	font-size: 14px;
+	line-height: 24px;
+	grid-template-columns: [start] auto 1fr auto [end];
+	gap: 20px 30px;
+	justify-items: left;
+}
+
+.btnSubmit {
+	width: 148px;
+	margin-right: 15px;
+}
+
+.textarea,
+.submit {
+	grid-column: start / end;
+}
+
+.rating {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 20px;
+}
+
+.success {
+	position: relative;
+
+	margin-top: 20px;
+	padding: 20px;
+
+	border-radius: 5px;
+	background-color: var(--green-light);
+}
+
+.successClose {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+
+	padding: 5px;
+
+	cursor: pointer;
+
+	border: none;
+	background: none;
+}
+
+.successTitle {
+	margin-bottom: 10px;
+
+	font-size: 17px;
+	font-weight: 700;
+}
+
+@media screen and (max-width: 1100px) {
+	.reviewForm {
+		grid-template-columns: [start] auto 1fr [end];
+	}
+
+	.rating {
+		grid-column: start / end;
+
+		order: -1;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.reviewForm {
+		grid-template-columns: [start] 1fr [end];
+		gap: 15px 30px;
+	}
+
+	.reviewForm input {
+		width: 100%;
+	}
+
+	.success {
+		padding: 10px;
+	}
+
+	.successClose {
+		top: 10px;
+		right: 10px;
+	}
+}

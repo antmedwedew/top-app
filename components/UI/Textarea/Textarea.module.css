@@ -1,5 +1,8 @@
 .Textarea {
+	width: 100%;
 	padding: 7px 15px;
+
+	resize: none;
 
 	color: var(--black);
 	border: none;
