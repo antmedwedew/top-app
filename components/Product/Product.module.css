@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template-columns: [start] 70px [logo-end] 30px [title-start] calc(50% - 100px) [middle] 1fr [price-start] auto [price-end] 40px [credit-start] auto [credit-end] 40px [rate-start] auto [end];
 
-	margin-bottom: 30px;
+	margin-top: 30px;
 	padding: 30px;
 }
 
@@ -172,6 +172,19 @@
 	line-height: 32px;
 }
 
+/* closed and opened form review */
+.closed {
+	overflow: hidden;
+
+	max-height: 0;
+	padding: 0;
+}
+
+.opened {
+	max-height: auto;
+	padding: 30px;
+}
+
 /* media */
 @media screen and (max-width: 1320px) {
 	.product {
@@ -318,5 +331,17 @@
 
 	.title {
 		margin-top: 10px;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.actions {
+		display: grid;
+		grid-template-columns: auto;
+	}
+
+	.actions button:last-child {
+		margin-top: 15px;
+		margin-left: 0;
 	}
 }
