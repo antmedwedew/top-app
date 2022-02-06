@@ -14,6 +14,22 @@
 	line-height: 22px;
 }
 
+.inputWrapper {
+	position: relative;
+}
+
 .input::placeholder {
 	color: #A4A4A4;
+}
+
+.error {
+	border: 1px solid var(--red);
+}
+
+.errorText {
+	position: absolute;
+	bottom: -22px;
+	left: 0;
+
+	color: var(--red);
 }

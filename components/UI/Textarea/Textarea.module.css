@@ -1,4 +1,4 @@
-.Textarea {
+.textarea {
 	width: 100%;
 	padding: 7px 15px;
 
@@ -17,6 +17,24 @@
 	line-height: 22px;
 }
 
-.Textarea::placeholder {
+.textareaWrapper {
+	position: relative;
+
+	width: 100%;
+}
+
+.textarea::placeholder {
 	color: #A4A4A4;
+}
+
+.error {
+	border: 1px solid var(--red);
+}
+
+.errorText {
+	position: absolute;
+	bottom: -15px;
+	left: 0;
+
+	color: var(--red);
 }

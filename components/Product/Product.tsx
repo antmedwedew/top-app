@@ -5,13 +5,12 @@ import { ProductModel } from "../../interfaces/product.interface";
 import styles from './Product.module.css';
 import classNames from 'classnames';
 import { decOfNumber, priceRu } from "../../helpers/helpers";
-import { match } from "assert";
 
 interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: ProductModel
 }
 
-export const Product = ({ product, className, ...props }: ProductProps): JSX.Element => {
+export const Product = ({ product, className }: ProductProps): JSX.Element => {
 
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 

@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { DetailedHTMLProps, ThHTMLAttributes } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Button, Input, Rating, Textarea } from "..";
 
 import styles from './ReviewForm.module.css';
@@ -11,32 +12,72 @@ export interface ReviewFormProps extends DetailedHTMLProps<ThHTMLAttributes<HTML
   productId: string
 }
 
+export interface IReviewForm {
+  name: string,
+  title: string,
+  description: string,
+  rating: number
+}
+
 export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps): JSX.Element => {
+
+  const { register, control, handleSubmit, formState: { errors } } = useForm<IReviewForm>();
+
+  const onSubmit = (data: IReviewForm) => {
+    console.log(data);
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div
         className={classNames(styles.reviewForm, className)}
         {...props}
       >
-        <Input placeholder="Имя" />
-        <Input placeholder="Заголовок отзыва" />
+        <Input
+          {...register('name', { required: { value: true, message: 'Заполните имя' } })}
+          placeholder="Имя"
+          error={errors.name}
+        />
+        <Input
+          {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
+          placeholder="Заголовок отзыва"
+          error={errors.title}
+        />
         <div className={styles.rating}>
           <span>Оценка:</span>
-          <Rating rating={0} isEditable={true} />
+          <Controller
+            control={control}
+            name="rating"
+            rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
+            render={({ field }) => (
+              <Rating
+                rating={field.value}
+                setRating={field.onChange}
+                ref={field.ref}
+                error={errors.rating}
+                isEditable
+              />
+            )}
+          />
         </div>
-        <Textarea placeholder="Текст отзыва" className={styles.textarea} />
+        <Textarea
+          {...register('description', { required: { value: true, message: 'Заполните описание' } })}
+          placeholder="Текст отзыва"
+          className={styles.textarea}
+          error={errors.description}
+        />
         <div className={styles.submit}>
-          <Button className={styles.btnSubmit} appearance="primary">Отправить</Button>
+          <Button type="submit" className={styles.btnSubmit} appearance="primary">Отправить</Button>
           <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
         </div>
       </div>
       <div className={styles.success}>
         <div className={styles.successTitle}>Ваш отзыв Отправлен</div>
         <div className={styles.successText}>Спасибо, ваш отзыв будет опубликован после проверки.</div>
-        <button className={styles.successClose}>
+        <button type="button" className={styles.successClose}>
           <CloseSmallIcon />
         </button>
       </div>
-    </>
+    </form>
   );
 };

@@ -1,15 +1,28 @@
-import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
+import { DetailedHTMLProps, forwardRef, ForwardedRef, TextareaHTMLAttributes } from "react";
 import styles from './Textarea.module.css';
 import classNames from 'classnames';
+import { FieldError } from "react-hook-form";
 
 interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+  error?: FieldError;
 }
 
-export const Textarea = ({ className, ...props }: TextareaProps): JSX.Element => {
+// eslint-disable-next-line react/display-name
+export const Textarea = forwardRef(({ className, error, ...props }: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
   return (
-    <textarea
-      className={classNames(className, styles.Textarea)}
-      {...props}
-    />
+    <div className={classNames(className, styles.textareaWrapper)}>
+      <textarea
+        className={classNames(styles.textarea, {
+          [styles.error]: error
+        })}
+        ref={ref}
+        {...props}
+      />
+      {error &&
+        <span className={styles.errorText}>
+          {error.message}
+        </span>
+      }
+    </div >
   );
-};
+});
