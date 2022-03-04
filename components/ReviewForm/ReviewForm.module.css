@@ -25,17 +25,26 @@
 	gap: 20px;
 }
 
-.success {
+.success, 
+.error {
 	position: relative;
 
 	margin-top: 20px;
 	padding: 20px;
 
 	border-radius: 5px;
+}
+
+.success {
 	background-color: var(--green-light);
 }
 
-.successClose {
+.error {
+	background-color: var(--red-light);
+}
+
+.successClose,
+.errorClose {
 	position: absolute;
 	top: 15px;
 	right: 15px;
@@ -48,11 +57,16 @@
 	background: none;
 }
 
-.successTitle {
+.successTitle,
+.errorTitle {
 	margin-bottom: 10px;
 
 	font-size: 17px;
 	font-weight: 700;
+}
+
+.errorTitle {
+	margin-bottom: 0;
 }
 
 @media screen and (max-width: 1100px) {
