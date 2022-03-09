@@ -45,6 +45,10 @@
 	white-space: nowrap;
 }
 
+.titleRate a {
+	color: var(--primary);
+}
+
 .lineBlock {
 	grid-column: start / end;
 }

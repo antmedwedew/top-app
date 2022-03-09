@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import React, { DetailedHTMLProps, HTMLAttributes, useRef, useState } from "react";
 import Image from 'next/image';
 import { Button, Card, Htag, Rating, Tag, P, Review, ReviewForm } from "..";
 import { ProductModel } from "../../interfaces/product.interface";
@@ -10,13 +10,21 @@ interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>,
   product: ProductModel
 }
 
-export const Product = ({ product, className }: ProductProps): JSX.Element => {
-
+export const Product = ({ product, className, ...props }: ProductProps): JSX.Element => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
+
+  const scrollToReview = () => {
+    setIsReviewOpened(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  };
 
   return (
-    <>
-      <Card className={classNames(className, styles.product)}>
+    <div className={className} {...props}>
+      <Card className={styles.product}>
         <div className={styles.logo}>
           <Image
             src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
@@ -43,7 +51,11 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
         </div>
         <div className={styles.titlePrice}>цена</div>
         <div className={styles.titleCredit}>в кредит</div>
-        <div className={styles.titleRate}>{product.reviewCount} {decOfNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}</div>
+        <div className={styles.titleRate}>
+          <a href="#ref" onClick={scrollToReview}>
+            {product.reviewCount} {decOfNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+          </a>
+        </div>
         <div className={styles.lineBlock}><hr className={styles.line} /></div>
         <P className={styles.description}>{product.description}</P>
         <div className={styles.feature}>
@@ -81,7 +93,9 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
       <Card color="blue" className={classNames(styles.reviews, {
         [styles.opened]: isReviewOpened,
         [styles.closed]: !isReviewOpened
-      })}>
+      })}
+        ref={reviewRef}
+      >
         {product.reviews.map((review) => (
           <div key={review._id}>
             <Review review={review} />
@@ -90,6 +104,6 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
         ))}
         <ReviewForm productId={product._id} />
       </Card>
-    </>
+    </div >
   );
 };

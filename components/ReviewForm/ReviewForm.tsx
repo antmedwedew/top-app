@@ -28,7 +28,7 @@ export interface IReviewSentResponse {
 export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps): JSX.Element => {
   const { register, control, handleSubmit, reset, formState: { errors } } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string>('');
 
   const onSubmit = async (formData: IReviewForm) => {
     try {
@@ -107,7 +107,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
         <button
           type="button"
           className={styles.errorClose}
-          onClick={() => setError(undefined)}
+          onClick={() => setError('')}
         >
           <CloseSmallIcon color="#DE0000" />
         </button>
