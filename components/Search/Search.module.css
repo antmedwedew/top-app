@@ -4,7 +4,8 @@
 	width: 100%;
 }
 
-.searchInput {
+.searchInput, 
+.searchInput input {
 	width: 100%;
 }
 
