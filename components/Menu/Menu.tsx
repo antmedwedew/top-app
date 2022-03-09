@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { AppContext } from '../../context/app.context';
 import { firstLevelMenuItem, PageItem } from '../../interfaces/menu.interface';
 import { firstLevelMenu } from './firstLevelMenu';
+import { motion } from 'framer-motion';
 
 import styles from './Menu.module.css';
 import classNames from "classnames";
@@ -12,6 +13,32 @@ import classNames from "classnames";
 export const Menu: React.FC = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);
   const router = useRouter();
+
+  const variants = {
+    visible: {
+      marginBottom: 5,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.1
+      }
+    },
+
+    hidden: {
+      marginBottom: 0
+    }
+  };
+
+  const variantsChildren = {
+    visible: {
+      opacity: 1,
+      height: 'auto'
+    },
+
+    hidden: {
+      opacity: 0,
+      height: 0
+    }
+  };
 
   const openSecondLavel = (secondCategory: string) => {
     setMenu && setMenu(menu.map(m => {
@@ -55,11 +82,15 @@ export const Menu: React.FC = (): JSX.Element => {
           return (
             <div key={item._id.secondCategory}>
               <div className={styles.secondLevel} onClick={() => openSecondLavel(item._id.secondCategory)}>{item._id.secondCategory}</div>
-              <div className={classNames(styles.secondLeveelBlock, {
-                [styles.secondLeveelBlockOpened]: item.isOpened
-              })}>
+              <motion.div
+                className={styles.secondLeveelBlock}
+                layout
+                variants={variants}
+                initial={item.isOpened ? 'visible' : 'hidden'}
+                animate={item.isOpened ? 'visible' : 'hidden'}
+              >
                 {buildThirdLevel(item.pages, menuItem.route)}
-              </div>
+              </motion.div>
             </div>
           );
         })}
@@ -70,13 +101,18 @@ export const Menu: React.FC = (): JSX.Element => {
   const buildThirdLevel = (pages: PageItem[], route: string) => {
     return (
       pages.map(p => (
-        <Link href={`/${route}/${p.alias}`} key={p._id}>
-          <a className={classNames(styles.thirdLevel, {
-            [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath
-          })}>
-            {p.category}
-          </a>
-        </Link>
+        <motion.div
+          key={p._id}
+          variants={variantsChildren}
+        >
+          <Link href={`/${route}/${p.alias}`}>
+            <a className={classNames(styles.thirdLevel, {
+              [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath
+            })}>
+              {p.category}
+            </a>
+          </Link>
+        </motion.div>
       ))
     );
   };

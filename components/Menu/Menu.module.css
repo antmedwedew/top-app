@@ -52,15 +52,7 @@
 }
 
 .secondLeveelBlock {
-	display: none;
-}
-
-.secondLeveelBlockOpened {
-	display: block;
-}
-
-.secondLeveelBlockOpened:last-child {
-	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 /* third level menu */
