@@ -1,16 +1,19 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useRef, useState } from "react";
+import React, { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLAttributes, useRef, useState } from "react";
 import Image from 'next/image';
 import { Button, Card, Htag, Rating, Tag, P, Review, ReviewForm } from "..";
 import { ProductModel } from "../../interfaces/product.interface";
-import styles from './Product.module.css';
-import classNames from 'classnames';
 import { decOfNumber, priceRu } from "../../helpers/helpers";
+import { motion } from 'framer-motion';
+
+import classNames from 'classnames';
+import styles from './Product.module.css';
 
 interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: ProductModel
 }
 
-export const Product = ({ product, className, ...props }: ProductProps): JSX.Element => {
+// eslint-disable-next-line react/display-name
+export const Product = motion(forwardRef(({ product, className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
   const reviewRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +26,7 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={className} {...props} ref={ref}>
       <Card className={styles.product}>
         <div className={styles.logo}>
           <Image
@@ -106,4 +109,4 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
       </Card>
     </div >
   );
-};
+}));
