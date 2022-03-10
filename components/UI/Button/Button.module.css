@@ -42,10 +42,10 @@
 
 .arrow svg {
 	transition: all var(--def-duration);
+	transform: rotate(0deg);
 }
 
-.down {
-	transition: all var(--def-duration);
+.down svg {
 	transform: rotate(90deg);
 }
 

@@ -17,6 +17,18 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
   const reviewRef = useRef<HTMLDivElement>(null);
 
+  const variants = {
+    visible: {
+      opacity: 1,
+      height: 'auto'
+    },
+
+    hidden: {
+      opacity: 0,
+      height: 0
+    }
+  };
+
   const scrollToReview = () => {
     setIsReviewOpened(true);
     reviewRef.current?.scrollIntoView({
@@ -93,20 +105,27 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
         </div>
       </Card>
 
-      <Card color="blue" className={classNames(styles.reviews, {
-        [styles.opened]: isReviewOpened,
-        [styles.closed]: !isReviewOpened
-      })}
-        ref={reviewRef}
+      <motion.div
+        initial="hidden"
+        animate={
+          isReviewOpened ? 'visible' : 'hidden'
+        }
+        variants={variants}
       >
-        {product.reviews.map((review) => (
-          <div key={review._id}>
-            <Review review={review} />
-            <div className={classNames(styles.lineBlock, styles.lineBlock2)}><hr className={styles.line} /></div>
-          </div>
-        ))}
-        <ReviewForm productId={product._id} />
-      </Card>
+        <Card
+          color="blue"
+          className={styles.reviews}
+          ref={reviewRef}
+        >
+          {product.reviews.map((review) => (
+            <div key={review._id}>
+              <Review review={review} />
+              <div className={classNames(styles.lineBlock, styles.lineBlock2)}><hr className={styles.line} /></div>
+            </div>
+          ))}
+          <ReviewForm productId={product._id} />
+        </Card>
+      </motion.div>
     </div >
   );
 }));
