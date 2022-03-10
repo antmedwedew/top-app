@@ -1,9 +1,9 @@
 import { useScrollY } from '../../hooks/useScrollY';
 import { motion, useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 
 import styles from './Up.module.css';
-import { ArrowTopIcon } from '../../public/icons/ArrowTopIcon';
-import { useEffect } from 'react';
+import { ButtonIcon } from '../UI/ButtonIcon/ButtonIcon';
 
 export const Up = (): JSX.Element => {
   const controls = useAnimation();
@@ -21,13 +21,16 @@ export const Up = (): JSX.Element => {
   };
 
   return (
-    <motion.button
+    <motion.div
       className={styles.up}
-      onClick={scrollToTop}
       animate={controls}
       initial={{ opacity: 0 }}
     >
-      <ArrowTopIcon />
-    </motion.button >
+      <ButtonIcon
+        appearance='primary'
+        icon='ArrowTopIcon'
+        onClick={scrollToTop}
+      />
+    </motion.div>
   );
 };

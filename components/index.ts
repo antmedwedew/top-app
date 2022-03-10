@@ -1,5 +1,6 @@
 // UI
 export * from './UI/Button/Button';
+export * from './UI/ButtonIcon/ButtonIcon';
 export * from './UI/Input/Input';
 export * from './UI/Textarea/Textarea';
 // -----

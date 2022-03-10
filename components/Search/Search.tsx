@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import styles from './Search.module.css';
 import classNames from 'classnames';
-import { Button, Input } from '..';
+import { ButtonIcon, Input } from '..';
 import { SearchIcon } from '../../public/icons/SearchIcon';
 import { useRouter } from 'next/router';
 
@@ -36,13 +36,14 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
         onKeyDown={handleKeyDown}
       />
 
-      <Button
+      <ButtonIcon
         appearance="primary"
         className={styles.searchBtn}
         onClick={goToSearch}
+        icon="SearchIcon"
       >
         <SearchIcon />
-      </Button>
+      </ButtonIcon>
     </div>
   );
 };

@@ -9,7 +9,7 @@ interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
   arrow?: 'right' | 'down' | 'none';
 }
 
-export const Button: React.FC<ButtonProps> = ({ appearance, arrow = 'none', children, className, ...props }: ButtonProps): JSX.Element => {
+export const Button = ({ appearance, arrow = 'none', className, children, ...props }: ButtonProps): JSX.Element => {
   return (
     <button
       className={classNames(styles.button, className, {

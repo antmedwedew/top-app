@@ -19,4 +19,6 @@
 	padding: 0;
 
 	transform: translateY(-50%);
+
+	border-radius: 5px;
 }
