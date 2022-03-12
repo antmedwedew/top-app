@@ -10,7 +10,7 @@ import styles from './ReviewForm.module.css';
 import { CloseSmallIcon } from "../../public/icons/CloseSmallIcon";
 
 
-export interface ReviewFormProps extends DetailedHTMLProps<ThHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ReviewFormProps extends DetailedHTMLProps<ThHTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   productId: string
 }
 
@@ -40,54 +40,53 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
       } else {
         setError('Что-то пошло не так');
       }
-    } catch (e: any) {
+    } catch (e) {
       setError('Что-то пошло не так');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div
-        className={classNames(styles.reviewForm, className)}
-        {...props}
-      >
-        <Input
-          {...register('name', { required: { value: true, message: 'Заполните имя' } })}
-          placeholder="Имя"
-          error={errors.name}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={classNames(styles.reviewForm, className)}
+      {...props}
+    >
+      <Input
+        {...register('name', { required: { value: true, message: 'Заполните имя' } })}
+        placeholder="Имя"
+        error={errors.name}
+      />
+      <Input
+        {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
+        placeholder="Заголовок отзыва"
+        error={errors.title}
+      />
+      <div className={styles.rating}>
+        <span>Оценка:</span>
+        <Controller
+          control={control}
+          name="rating"
+          rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
+          render={({ field }) => (
+            <Rating
+              rating={field.value}
+              setRating={field.onChange}
+              ref={field.ref}
+              error={errors.rating}
+              isEditable
+            />
+          )}
         />
-        <Input
-          {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
-          placeholder="Заголовок отзыва"
-          error={errors.title}
-        />
-        <div className={styles.rating}>
-          <span>Оценка:</span>
-          <Controller
-            control={control}
-            name="rating"
-            rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
-            render={({ field }) => (
-              <Rating
-                rating={field.value}
-                setRating={field.onChange}
-                ref={field.ref}
-                error={errors.rating}
-                isEditable
-              />
-            )}
-          />
-        </div>
-        <Textarea
-          {...register('description', { required: { value: true, message: 'Заполните описание' } })}
-          placeholder="Текст отзыва"
-          className={styles.textarea}
-          error={errors.description}
-        />
-        <div className={styles.submit}>
-          <Button type="submit" className={styles.btnSubmit} appearance="primary">Отправить</Button>
-          <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
-        </div>
+      </div>
+      <Textarea
+        {...register('description', { required: { value: true, message: 'Заполните описание' } })}
+        placeholder="Текст отзыва"
+        className={styles.textarea}
+        error={errors.description}
+      />
+      <div className={styles.submit}>
+        <Button type="submit" className={styles.btnSubmit} appearance="primary">Отправить</Button>
+        <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
       </div>
 
       {isSuccess && <div className={styles.success}>

@@ -13,8 +13,6 @@
 
 .header {
 	grid-area: header;
-
-	display: none;
 }
 
 .sidebar {
@@ -32,6 +30,7 @@
 @media screen and (max-width: 767px) {
 	.wrapper {
 		grid-template-columns: minmax(320px, 1fr);
+		gap: 10px;
 		grid-template-areas:
 			"header"
 			"body"
@@ -40,10 +39,6 @@
 
 	.sidebar {
 		display: none !important;
-	}
-
-	.header {
-		display: block;
 	}
 
 	.body {
