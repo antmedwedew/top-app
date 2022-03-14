@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, KeyboardEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../context/app.context';
@@ -49,6 +49,13 @@ export const Menu: React.FC = (): JSX.Element => {
     }));
   };
 
+  const openSecondLavelKey = (key: KeyboardEvent, secondCategory: string) => {
+    if (key.code === 'Space' || key.code === 'Enter') {
+      key.preventDefault();
+      openSecondLavel(secondCategory);
+    }
+  };
+
   const buildFirstLevel = () => {
     return (
       <>
@@ -81,7 +88,13 @@ export const Menu: React.FC = (): JSX.Element => {
 
           return (
             <div key={item._id.secondCategory}>
-              <div className={styles.secondLevel} onClick={() => openSecondLavel(item._id.secondCategory)}>{item._id.secondCategory}</div>
+              <div tabIndex={0}
+                className={styles.secondLevel}
+                onClick={() => openSecondLavel(item._id.secondCategory)}
+                onKeyDown={(key: KeyboardEvent) => openSecondLavelKey(key, item._id.secondCategory)}
+              >
+                {item._id.secondCategory}
+              </div>
               <motion.div
                 className={styles.secondLeveelBlock}
                 layout
@@ -89,7 +102,7 @@ export const Menu: React.FC = (): JSX.Element => {
                 initial={item.isOpened ? 'visible' : 'hidden'}
                 animate={item.isOpened ? 'visible' : 'hidden'}
               >
-                {buildThirdLevel(item.pages, menuItem.route)}
+                {buildThirdLevel(item.pages, menuItem.route, item.isOpened ?? false)}
               </motion.div>
             </div>
           );
@@ -98,7 +111,7 @@ export const Menu: React.FC = (): JSX.Element => {
     );
   };
 
-  const buildThirdLevel = (pages: PageItem[], route: string) => {
+  const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
     return (
       pages.map(p => (
         <motion.div
@@ -106,7 +119,7 @@ export const Menu: React.FC = (): JSX.Element => {
           variants={variantsChildren}
         >
           <Link href={`/${route}/${p.alias}`}>
-            <a className={classNames(styles.thirdLevel, {
+            <a tabIndex={isOpened ? 0 : -1} className={classNames(styles.thirdLevel, {
               [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath
             })}>
               {p.category}

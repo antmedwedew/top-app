@@ -41,5 +41,5 @@ html,
 body {
 	box-sizing: border-box;
 
-	outline: none;
+	outline-color: var(--primary-hover);
 }
