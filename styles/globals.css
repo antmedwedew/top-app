@@ -43,3 +43,12 @@ body {
 
 	outline-color: var(--primary-hover);
 }
+
+.visualyHidden {
+	position: absolute;
+
+	overflow: hidden;
+
+	width: 0;
+	height: 0;
+}

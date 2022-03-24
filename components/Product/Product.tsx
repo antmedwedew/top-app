@@ -20,12 +20,14 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
   const variants = {
     visible: {
       opacity: 1,
-      height: 'auto'
+      height: 'auto',
+      overflow: 'hidden'
     },
 
     hidden: {
       opacity: 0,
-      height: 0
+      height: 0,
+      overflow: 'hidden'
     }
   };
 
@@ -51,13 +53,20 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
         </div>
         <Htag className={styles.title} tag="h3">{product.title}</Htag>
         <div className={styles.price}>
-          {priceRu(product.price)}
-          {product.oldPrice && <Tag className={styles.oldPrice} color="green" size="s">-{priceRu(product.oldPrice)}</Tag>}
+          <span>
+            <span className="visualyHidden">Цена</span>
+            {priceRu(product.price)}
+          </span>
+          <span>
+            <span className="visualyHidden">Скидка</span>
+            {product.oldPrice && <Tag className={styles.oldPrice} color="green" size="s">-{priceRu(product.oldPrice)}</Tag>}
+          </span>
         </div>
         <div className={styles.credit}>{priceRu(product.credit)}
           <span>/мес</span>
         </div>
         <div className={styles.rating}>
+          <span className="visualyHidden">{'рейтинг' + (product.reviewAvg ?? product.initialRating)}</span>
           <Rating rating={product.reviewAvg ?? product.initialRating} />
         </div>
         <div className={styles.tags}>
@@ -65,8 +74,8 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
             <Tag key={categoty} color="ghost" mrgnBottom={true}>{categoty}</Tag>
           )}
         </div>
-        <div className={styles.titlePrice}>цена</div>
-        <div className={styles.titleCredit}>в кредит</div>
+        <div className={styles.titlePrice} aria-hidden={true}>цена</div>
+        <div className={styles.titleCredit} aria-hidden={true}>в кредит</div>
         <div className={styles.titleRate}>
           <a href="#ref" onClick={scrollToReview}>
             {product.reviewCount} {decOfNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
