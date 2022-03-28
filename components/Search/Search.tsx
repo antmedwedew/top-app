@@ -5,7 +5,7 @@ import { ButtonIcon, Input } from '..';
 import { SearchIcon } from '../../public/icons/SearchIcon';
 import { useRouter } from 'next/router';
 
-interface SearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
+interface SearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> { }
 
 export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<string>('');
@@ -27,7 +27,7 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
   };
 
   return (
-    <div className={classNames(className, styles.search)} {...props}>
+    <form className={classNames(className, styles.search)} {...props} role="search">
       <Input
         className={styles.searchInput}
         placeholder="Поиск..."
@@ -45,6 +45,6 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
       >
         <SearchIcon />
       </ButtonIcon>
-    </div>
+    </form>
   );
 };

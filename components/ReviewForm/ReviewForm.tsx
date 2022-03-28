@@ -27,7 +27,7 @@ export interface IReviewSentResponse {
 }
 
 export const ReviewForm = ({ productId, isOpeneed, className, ...props }: ReviewFormProps): JSX.Element => {
-  const { register, control, handleSubmit, reset, formState: { errors } } = useForm<IReviewForm>();
+  const { register, control, handleSubmit, reset, clearErrors, formState: { errors } } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
@@ -47,63 +47,71 @@ export const ReviewForm = ({ productId, isOpeneed, className, ...props }: Review
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={classNames(styles.reviewForm, className)}
-      {...props}
-    >
-      <Input
-        {...register('name', { required: { value: true, message: 'Заполните имя' } })}
-        placeholder="Имя"
-        error={errors.name}
-        tabIndex={isOpeneed ? 0 : -1}
-      />
-      <Input
-        {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
-        placeholder="Заголовок отзыва"
-        error={errors.title}
-        tabIndex={isOpeneed ? 0 : -1}
-      />
-      <div className={styles.rating}>
-        <span>Оценка:</span>
-        <Controller
-          control={control}
-          name="rating"
-          rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
-          render={({ field }) => (
-            <Rating
-              rating={field.value}
-              setRating={field.onChange}
-              ref={field.ref}
-              error={errors.rating}
-              isEditable
-              tabIndex={isOpeneed ? 0 : -1}
-            />
-          )}
-        />
-      </div>
-      <Textarea
-        {...register('description', { required: { value: true, message: 'Заполните описание' } })}
-        placeholder="Текст отзыва"
-        className={styles.textarea}
-        error={errors.description}
-        tabIndex={isOpeneed ? 0 : -1}
-      />
-      <div className={styles.submit}>
-        <Button
-          type="submit"
-          className={styles.btnSubmit}
-          appearance="primary"
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={classNames(styles.reviewForm, className)}
+        {...props}
+      >
+        <Input
+          {...register('name', { required: { value: true, message: 'Заполните имя' } })}
+          placeholder="Имя"
+          error={errors.name}
           tabIndex={isOpeneed ? 0 : -1}
-        >Отправить</Button>
-        <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
-      </div>
+          aria-invalid={errors.name ? true : false}
+        />
+        <Input
+          {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
+          placeholder="Заголовок отзыва"
+          error={errors.title}
+          tabIndex={isOpeneed ? 0 : -1}
+          aria-invalid={errors.title ? true : false}
+        />
+        <div className={styles.rating}>
+          <span>Оценка:</span>
+          <Controller
+            control={control}
+            name="rating"
+            rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
+            render={({ field }) => (
+              <Rating
+                rating={field.value}
+                setRating={field.onChange}
+                ref={field.ref}
+                error={errors.rating}
+                isEditable
+                tabIndex={isOpeneed ? 0 : -1}
+              />
+            )}
+          />
+        </div>
+        <Textarea
+          {...register('description', { required: { value: true, message: 'Заполните описание' } })}
+          placeholder="Текст отзыва"
+          className={styles.textarea}
+          error={errors.description}
+          tabIndex={isOpeneed ? 0 : -1}
+          aria-label='Текст отзыва'
+          aria-invalid={errors.description ? true : false}
+        />
+        <div className={styles.submit}>
+          <Button
+            type="submit"
+            className={styles.btnSubmit}
+            appearance="primary"
+            tabIndex={isOpeneed ? 0 : -1}
+            onClick={() => clearErrors()}
+          >
+            Отправить</Button>
+          <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
+        </div>
+      </form>
 
-      {isSuccess && <div className={styles.success}>
+      {isSuccess && <div className={styles.success} role="alert">
         <div className={styles.successTitle}>Ваш отзыв Отправлен</div>
         <div className={styles.successText}>Спасибо, ваш отзыв будет опубликован после проверки.</div>
         <button
-          type="button"
+          aria-label="Закрыть оповещение"
           className={styles.successClose}
           onClick={() => setIsSuccess(false)}
         >
@@ -111,16 +119,16 @@ export const ReviewForm = ({ productId, isOpeneed, className, ...props }: Review
         </button>
       </div>}
 
-      {error !== '' && <div className={styles.error}>
+      {error !== '' && <div className={styles.error} role="alert">
         <div className={styles.errorTitle}>{error}</div>
         <button
-          type="button"
+          aria-label="Закрыть оповещение"
           className={styles.errorClose}
           onClick={() => setError('')}
         >
           <CloseSmallIcon color="#DE0000" />
         </button>
       </div>}
-    </form>
+    </>
   );
 };
