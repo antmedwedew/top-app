@@ -38,8 +38,8 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
         />
       </div>
 
-      <div>
-        {sortedProducts && sortedProducts.map(product => (<Product layout key={product._id} product={product} />))}
+      <div role="list">
+        {sortedProducts && sortedProducts.map(product => (<Product role="listitem" layout key={product._id} product={product} />))}
       </div>
 
       {firstCategory === TopLevelCategory.Courses && page.hh && <>

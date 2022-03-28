@@ -136,6 +136,6 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
           <ReviewForm productId={product._id} isOpeneed={isReviewOpened} />
         </Card>
       </motion.div>
-    </div >
+    </div>
   );
 }));
