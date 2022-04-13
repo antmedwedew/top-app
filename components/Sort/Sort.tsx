@@ -24,6 +24,7 @@ export const Sort = ({ sort, setSort, className, ...props }: SortProps): JSX.Ele
         className={classNames(styles.sortItem, {
           [styles.active]: sort === SortEnum.Rating
         })}
+        role="sort"
         aria-selected={sort == SortEnum.Rating}
         aria-labelledby="sort rating"
       >
@@ -36,6 +37,7 @@ export const Sort = ({ sort, setSort, className, ...props }: SortProps): JSX.Ele
         className={classNames(styles.sortItem, {
           [styles.active]: sort === SortEnum.Price
         })}
+        role="sort"
         aria-selected={sort == SortEnum.Price}
         aria-labelledby="sort price"
       >
