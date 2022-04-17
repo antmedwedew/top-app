@@ -4,6 +4,7 @@ import { withLayout } from "../layout/Layout";
 import axios from 'axios';
 import { MenuItem } from "../interfaces/menu.interface";
 import { API } from "../helpers/api";
+import { Htag } from "../components";
 
 interface HomeProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -13,7 +14,7 @@ interface HomeProps extends Record<string, unknown> {
 function Home(): JSX.Element {
   return (
     <>
-      <h1>Home</h1>
+      <Htag tag="h1">Home</Htag>
     </>
   );
 }

@@ -6,6 +6,7 @@ import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import axios from 'axios';
 import { API } from "../../helpers/api";
+import { Htag } from "../../components";
 
 interface TypeProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -17,7 +18,7 @@ function Type({ firstCategory }: TypeProps): JSX.Element {
 
   return (
     <>
-      <h1>{activeItemMenu?.name}</h1>
+      <Htag tag="h1">{activeItemMenu?.name}</Htag>
     </>
   );
 }
