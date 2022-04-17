@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
     </Head>
     <Component {...pageProps} />
   </>;
-
 }
 
 export default MyApp;

@@ -13,10 +13,11 @@ interface TypeProps extends Record<string, unknown> {
 }
 
 function Type({ firstCategory }: TypeProps): JSX.Element {
+  const activeItemMenu = firstLevelMenu.find((item, i) => item && i === firstCategory);
 
   return (
     <>
-      <h1>Type {firstCategory}</h1>
+      <h1>{activeItemMenu?.name}</h1>
     </>
   );
 }

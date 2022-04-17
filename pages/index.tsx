@@ -10,10 +10,10 @@ interface HomeProps extends Record<string, unknown> {
   firstCategory: number;
 }
 
-function Home({ menu }: HomeProps): JSX.Element {
+function Home(): JSX.Element {
   return (
     <>
-
+      <h1>Home</h1>
     </>
   );
 }
