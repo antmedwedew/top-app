@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import styles from './Up.module.css';
 import { ButtonIcon } from '../UI/ButtonIcon/ButtonIcon';
 
-export const Up = (): JSX.Element => {
+export const Up: React.FC = (): JSX.Element => {
   const controls = useAnimation();
   const y = useScrollY();
 

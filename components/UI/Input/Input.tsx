@@ -7,7 +7,6 @@ interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
   error?: FieldError;
 }
 
-// eslint-disable-next-line react/display-name
 export const Input = forwardRef(({ className, error, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
   return (
     <div className={classNames(className, styles.inputWrapper)}>

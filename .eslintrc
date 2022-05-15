@@ -14,7 +14,10 @@
       {
         "allowSingleExtends": true
       }
-    ]
+    ],
+    "@next/next/no-document-import-in-page": "off",
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "off"
   },
   "extends": [
     "next",

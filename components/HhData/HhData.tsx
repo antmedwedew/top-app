@@ -17,7 +17,7 @@ export const HhDataBlock = ({ count, juniorSalary, middleSalary, seniorSalary }:
       <Card className={styles.salary}>
         <div className={styles.salaryBlock}>
           <div className={styles.salaryTitle}>Начальный</div>
-          <div className={styles.salaryValue}>{priceRu(juniorSalary)}</div>
+          <div className={styles.salaryValue}>{juniorSalary && priceRu(juniorSalary)}</div>
           <div className={styles.salaryRating}>
             <RoundStarIcon color="#FC836D" />
             <RoundStarIcon />
@@ -27,7 +27,7 @@ export const HhDataBlock = ({ count, juniorSalary, middleSalary, seniorSalary }:
 
         <div className={styles.salaryBlock}>
           <div className={styles.salaryTitle}>Средний</div>
-          <div className={styles.salaryValue}>{priceRu(middleSalary)}</div>
+          <div className={styles.salaryValue}>{middleSalary && priceRu(middleSalary)}</div>
           <div className={styles.salaryRating}>
             <RoundStarIcon color="#FC836D" />
             <RoundStarIcon color="#FC836D" />
@@ -37,7 +37,7 @@ export const HhDataBlock = ({ count, juniorSalary, middleSalary, seniorSalary }:
 
         <div className={styles.salaryBlock}>
           <div className={styles.salaryTitle}>Профессионал</div>
-          <div className={styles.salaryValue}>{priceRu(seniorSalary)}</div>
+          <div className={styles.salaryValue}>{seniorSalary && priceRu(seniorSalary)}</div>
           <div className={styles.salaryRating}>
             <RoundStarIcon color="#FC836D" />
             <RoundStarIcon color="#FC836D" />

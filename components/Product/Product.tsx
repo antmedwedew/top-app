@@ -12,7 +12,6 @@ interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>,
   product: ProductModel
 }
 
-// eslint-disable-next-line react/display-name
 export const Product = motion(forwardRef(({ product, className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
   const reviewRef = useRef<HTMLDivElement>(null);
@@ -55,14 +54,14 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
         <div className={styles.price}>
           <span>
             <span className="visualyHidden">Цена</span>
-            {priceRu(product.price)}
+            {product.price && priceRu(product.price)}
           </span>
           <span>
             <span className="visualyHidden">Скидка</span>
-            {product.oldPrice && <Tag className={styles.oldPrice} color="green" size="s">-{priceRu(product.oldPrice)}</Tag>}
+            {product.oldPrice && <Tag className={styles.oldPrice} color="green" size="s">-{product.oldPrice && priceRu(product.oldPrice)}</Tag>}
           </span>
         </div>
-        <div className={styles.credit}>{priceRu(product.credit)}
+        <div className={styles.credit}>{product.credit && priceRu(product.credit)}
           <span>/мес</span>
         </div>
         <div className={styles.rating}>

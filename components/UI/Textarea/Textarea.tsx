@@ -7,7 +7,6 @@ interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<HTMLTex
   error?: FieldError;
 }
 
-// eslint-disable-next-line react/display-name
 export const Textarea = forwardRef(({ className, error, ...props }: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
   return (
     <div className={classNames(className, styles.textareaWrapper)}>

@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef, ForwardedRef } from "react";
 import styles from './Button.module.css';
 import classNames from "classnames";
 import { ArrowIcon } from '../../../public/icons/ArrowIcon';
@@ -9,9 +9,10 @@ interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
   arrow?: 'right' | 'down' | 'none';
 }
 
-export const Button = ({ appearance, arrow = 'none', className, children, ...props }: ButtonProps): JSX.Element => {
+export const Button = forwardRef(({ appearance, arrow = 'none', className, children, ...props }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>): JSX.Element => {
   return (
     <button
+      ref={ref}
       className={classNames(styles.button, className, {
         [styles.primary]: appearance == 'primary',
         [styles.ghost]: appearance == 'ghost'
@@ -26,4 +27,4 @@ export const Button = ({ appearance, arrow = 'none', className, children, ...pro
       </span>}
     </button >
   );
-};
+});

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 interface SearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> { }
 
-export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
+export const Search: React.FC = ({ className, ...props }: SearchProps): JSX.Element => {
   const [search, setSearch] = useState<string>('');
   const router = useRouter();
 

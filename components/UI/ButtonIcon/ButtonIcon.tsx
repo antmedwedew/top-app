@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef, ForwardedRef } from "react";
 import styles from './ButtonIcon.module.css';
 import classNames from "classnames";
 
@@ -21,10 +21,11 @@ interface ButtonIconProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBut
   appearance: 'primary' | 'white';
 }
 
-export const ButtonIcon = ({ appearance, className, icon, ...props }: ButtonIconProps): JSX.Element => {
+export const ButtonIcon = forwardRef(({ appearance, className, icon, ...props }: ButtonIconProps, ref: ForwardedRef<HTMLButtonElement>): JSX.Element => {
   const IconComp = icons[icon];
   return (
     <button
+      ref={ref}
       className={classNames(styles.button, className, {
         [styles.primary]: appearance == 'primary',
         [styles.white]: appearance == 'white'
@@ -34,4 +35,4 @@ export const ButtonIcon = ({ appearance, className, icon, ...props }: ButtonIcon
       <IconComp />
     </button >
   );
-};
+});

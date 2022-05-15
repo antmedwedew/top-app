@@ -11,14 +11,12 @@ interface RatingProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, 
   setRating?: (rating: number) => void;
 }
 
-// eslint-disable-next-line react/display-name
 export const Rating = forwardRef(({ isEditable = false, error, rating, setRating, tabIndex, ...props }: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
   const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     constructRating(rating);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rating, tabIndex]);
 
   const changeDisplay = (i: number) => {

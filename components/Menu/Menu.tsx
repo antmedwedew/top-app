@@ -9,7 +9,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import styles from './Menu.module.css';
 import classNames from "classnames";
 
-
 export const Menu: React.FC = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);
   const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>();
@@ -42,42 +41,42 @@ export const Menu: React.FC = (): JSX.Element => {
     }
   };
 
-  const openSecondLavel = (secondCategory: string) => {
-    setMenu && setMenu(menu.map(m => {
-      if (m._id.secondCategory === secondCategory) {
-        setAnnounce(m.isOpened ? 'closed' : 'opened');
-        m.isOpened = !m.isOpened;
+  const openSecondLevel = (secondCategory: string) => {
+    setMenu && setMenu(menu.map(item => {
+      if (item._id.secondCategory === secondCategory) {
+        setAnnounce(item.isOpened ? 'closed' : 'opened');
+        item.isOpened = !item.isOpened;
       }
-      return m;
+      return item;
     }));
   };
 
-  const openSecondLavelKey = (key: KeyboardEvent, secondCategory: string) => {
+  const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
     if (key.code === 'Space' || key.code === 'Enter') {
       key.preventDefault();
-      openSecondLavel(secondCategory);
+      openSecondLevel(secondCategory);
     }
   };
 
   const buildFirstLevel = () => {
     return (
       <ul className={styles.firsLevelListMenu}>
-        {firstLevelMenu.map(m => (
-          <li key={m.id}>
-            <Link href={`/${m.route}`}>
-              <a aria-expanded={m.id == firstCategory}>
+        {firstLevelMenu.map(item => (
+          <li key={item.id}>
+            <Link href={`/${item.route}`}>
+              <a aria-expanded={item.id == firstCategory}>
                 <div className={classNames(styles.firstLevel, {
-                  [styles.firstLevelActive]: m.id == firstCategory
+                  [styles.firstLevelActive]: item.id == firstCategory
                 })}>
-                  {m.icon}
-                  <span>{m.name}</span>
+                  {item.icon}
+                  <span>{item.name}</span>
                 </div>
               </a>
             </Link>
-            {m.id == firstCategory && buildSecondLevel(m)}
+            {item.id === firstCategory && buildSecondLevel(item)}
           </li>
         ))}
-      </ul>
+      </ul >
     );
   };
 
@@ -93,8 +92,8 @@ export const Menu: React.FC = (): JSX.Element => {
             <li key={item._id.secondCategory}>
               <button
                 className={styles.secondLevel}
-                onClick={() => openSecondLavel(item._id.secondCategory)}
-                onKeyDown={(key: KeyboardEvent) => openSecondLavelKey(key, item._id.secondCategory)}
+                onClick={() => openSecondLevel(item._id.secondCategory)}
+                onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, item._id.secondCategory)}
                 aria-expanded={item.isOpened}
               >
                 {item._id.secondCategory}
@@ -112,24 +111,24 @@ export const Menu: React.FC = (): JSX.Element => {
           );
         })
         }
-      </ul >
+      </ul>
     );
   };
 
   const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
     return (
-      pages.map(p => (
+      pages.map(page => (
         <motion.li
-          key={p._id}
+          key={page._id}
           variants={variantsChildren}
         >
-          <Link href={`/${route}/${p.alias}`}>
+          <Link href={`/${route}/${page.alias}`}>
             <a tabIndex={isOpened ? 0 : -1} className={classNames(styles.thirdLevel, {
-              [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath
+              [styles.thirdLevelActive]: `/${route}/${page.alias}` === router.asPath
             })}
-              aria-current={`/${route}/${p.alias}` === router.asPath ? 'page' : false}
+              aria-current={`/${route}/${page.alias}` === router.asPath ? 'page' : false}
             >
-              {p.category}
+              {page.category}
             </a>
           </Link>
         </motion.li>
@@ -139,11 +138,9 @@ export const Menu: React.FC = (): JSX.Element => {
 
   return (
     <nav className={styles.menu} role="navigation">
-      {
-        announce && <span className="visualyHidden" role='log'>
-          {announce == 'opened' ? 'развернуто' : 'свернуто'}
-        </span>
-      }
+      {announce && <span className="visualyHidden" role='log'>
+        {announce == 'opened' ? 'развернуто' : 'свернуто'}
+      </span>}
       {buildFirstLevel()}
     </nav>
   );

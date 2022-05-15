@@ -7,7 +7,6 @@ interface CardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HT
   children: ReactNode
 }
 
-// eslint-disable-next-line react/display-name
 export const Card = forwardRef(({ color = "white", children, className, ...props }: CardProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   return (
     <div className={classNames(styles.card, className, {
