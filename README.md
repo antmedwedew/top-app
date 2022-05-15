@@ -2,9 +2,9 @@
 Разработан в целях изучения NextJs + SRR + TS и верстки на grid css.
 Для разработки использовался react-create-app.
 
-Для запуска проекта использовать: 
-  npm run dev -- dev среда на localhost 3000
-  npm run build -- сборка и генерация страниц
-  npm start -- развертывание проекта после build на localhost 3000
+## Для запуска проекта использовать: 
+  <b>npm run dev</b> -- dev среда на localhost 3000 </br>
+  <b>npm run build</b> -- сборка и генерация страниц </br>
+  <b>npm start</b> -- развертывание проекта после build на localhost 3000
   
 
