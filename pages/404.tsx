@@ -1,11 +1,10 @@
-import React from 'react';
-import { Htag } from '../components';
+import { Htag } from "../components";
 import { withLayout } from "../layout/Layout";
 
-export function Error404(): JSX.Element {
+export function Error404() {
   return (
     <>
-      <Htag tag='h1'>Ошибка 404</Htag>
+      <Htag tag="h1">Ошибка 404</Htag>
     </>
   );
 }

@@ -1,6 +1,11 @@
-import React from 'react';
+import React from "react";
 
-export const BurgerIcon = ({ width = '20', height = '17', color = '#7653FC', ...props }: React.SVGProps<SVGSVGElement>): JSX.Element => {
+export const BurgerIcon = ({
+  width = "20",
+  height = "17",
+  color = "#7653FC",
+  ...props
+}: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,6 +18,6 @@ export const BurgerIcon = ({ width = '20', height = '17', color = '#7653FC', ...
       <rect width="20" height="3" rx="1.5" />
       <rect y="7" width="20" height="3" rx="1.5" />
       <rect y="14" width="20" height="3" rx="1.5" />
-    </svg >
+    </svg>
   );
 };

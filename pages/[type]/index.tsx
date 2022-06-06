@@ -4,7 +4,7 @@ import { MenuItem } from "../../interfaces/menu.interface";
 import { firstLevelMenu } from "../../components/Menu/firstLevelMenu";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import { API } from "../../helpers/api";
 import { Htag } from "../../components";
 
@@ -13,8 +13,10 @@ interface TypeProps extends Record<string, unknown> {
   firstCategory: number;
 }
 
-function Type({ firstCategory }: TypeProps): JSX.Element {
-  const activeItemMenu = firstLevelMenu.find((item, i) => item && i === firstCategory);
+function Type({ firstCategory }: TypeProps) {
+  const activeItemMenu = firstLevelMenu.find(
+    (item, i) => item && i === firstCategory
+  );
 
   return (
     <>
@@ -28,35 +30,39 @@ export default withLayout(Type);
 // get paths
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: firstLevelMenu.map(menu => '/' + menu.route),
-    fallback: true
+    paths: firstLevelMenu.map((menu) => "/" + menu.route),
+    fallback: true,
   };
 };
 
 // get menu
-export const getStaticProps: GetStaticProps<TypeProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<TypeProps> = async ({
+  params,
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
-  const firstCategoryItem = firstLevelMenu.find(menu => menu.route === params.type);
+  const firstCategoryItem = firstLevelMenu.find(
+    (menu) => menu.route === params.type
+  );
 
   if (!firstCategoryItem) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
   const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-    firstCategory: firstCategoryItem.id
+    firstCategory: firstCategoryItem.id,
   });
 
   return {
     props: {
       menu,
-      firstCategory: firstCategoryItem.id
-    }
+      firstCategory: firstCategoryItem.id,
+    },
   };
 };

@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import React from "react";
 import { withLayout } from "../layout/Layout";
-import axios from 'axios';
+import axios from "axios";
 import { MenuItem } from "../interfaces/menu.interface";
 import { API } from "../helpers/api";
 import { Htag } from "../components";
@@ -11,7 +11,7 @@ interface HomeProps extends Record<string, unknown> {
   firstCategory: number;
 }
 
-function Home(): JSX.Element {
+function Home() {
   return (
     <>
       <Htag tag="h1">Home</Htag>
@@ -26,15 +26,13 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const firstCategory = 0;
 
   const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-    firstCategory
+    firstCategory,
   });
 
   return {
     props: {
       menu,
-      firstCategory
-    }
+      firstCategory,
+    },
   };
 };
-
-

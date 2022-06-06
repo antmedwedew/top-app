@@ -44,7 +44,7 @@ body {
 	outline-color: var(--primary-hover);
 }
 
-.visualyHidden {
+.visualHidden {
 	position: absolute;
 
 	overflow: hidden;

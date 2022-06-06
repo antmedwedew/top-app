@@ -1,33 +1,38 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
-import styles from './Search.module.css';
-import classNames from 'classnames';
-import { ButtonIcon, Input } from '..';
-import { SearchIcon } from '../../public/icons/SearchIcon';
-import { useRouter } from 'next/router';
+import React, { HTMLAttributes, useState } from "react";
+import styles from "./Search.module.css";
+import classNames from "classnames";
+import { ButtonIcon, Input } from "..";
+import { SearchIcon } from "../../public/icons/SearchIcon";
+import { useRouter } from "next/router";
 
-interface SearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> { }
-
-export const Search: React.FC = ({ className, ...props }: SearchProps): JSX.Element => {
-  const [search, setSearch] = useState<string>('');
+export const Search: React.FC<HTMLAttributes<HTMLFormElement>> = ({
+  className,
+  ...props
+}) => {
+  const [search, setSearch] = useState<string>("");
   const router = useRouter();
 
   const goToSearch = () => {
     router.push({
-      pathname: '/search',
+      pathname: "/search",
       query: {
-        q: search
-      }
+        q: search,
+      },
     });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       goToSearch();
     }
   };
 
   return (
-    <form className={classNames(className, styles.search)} {...props} role="search">
+    <form
+      className={classNames(className, styles.search)}
+      {...props}
+      role="search"
+    >
       <Input
         className={styles.searchInput}
         placeholder="Поиск..."
@@ -41,7 +46,7 @@ export const Search: React.FC = ({ className, ...props }: SearchProps): JSX.Elem
         className={styles.searchBtn}
         onClick={goToSearch}
         icon="SearchIcon"
-        aria-label='Искать по сайту'
+        aria-label="Искать по сайту"
       >
         <SearchIcon />
       </ButtonIcon>
