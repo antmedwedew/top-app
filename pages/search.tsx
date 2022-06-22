@@ -1,20 +1,19 @@
 import { GetStaticProps } from "next";
 import React from "react";
 import { withLayout } from "../layout/Layout";
-import axios from 'axios';
+import axios from "axios";
 import { MenuItem } from "../interfaces/menu.interface";
 import { API } from "../helpers/api";
-import { Htag } from "../components";
 
 interface SearchProps extends Record<string, unknown> {
   menu: MenuItem[];
   firstCategory: number;
 }
 
-function Search(): JSX.Element {
+function Search() {
   return (
     <>
-      <Htag tag="h1">Search</Htag>
+      <h1 className="h1">Search</h1>
     </>
   );
 }
@@ -26,13 +25,13 @@ export const getStaticProps: GetStaticProps<SearchProps> = async () => {
   const firstCategory = 0;
 
   const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-    firstCategory
+    firstCategory,
   });
 
   return {
     props: {
       menu,
-      firstCategory
-    }
+      firstCategory,
+    },
   };
 };

@@ -1,12 +1,16 @@
 import { useReducedMotion } from "framer-motion";
 import React, { useEffect, useReducer } from "react";
-import { Advantages, HhDataBlock, Htag, Product, Sort, Tag } from "../../components";
+import { Advantages, HhDataBlock, Product, Sort, Tag } from "../../components";
 import { SortEnum } from "../../components";
 import { sortReducer } from "../../components/Sort/sort.reducer";
 import { ProductModel } from "../../interfaces/product.interface";
-import { TopLevelCategory, TopPageModel } from "../../interfaces/topPage.interface";
+import {
+  TopLevelCategory,
+  TopPageModel,
+} from "../../interfaces/topPage.interface";
 
 import styles from "./TopPageComponent.module.css";
+import classNames from "classnames";
 
 interface TopPageComponentProps {
   firstCategory: TopLevelCategory;
@@ -14,8 +18,15 @@ interface TopPageComponentProps {
   products: ProductModel[];
 }
 
-export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
-  const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, { sort: SortEnum.Rating, products });
+export const TopPageComponent: React.FC<TopPageComponentProps> = ({
+  page,
+  products,
+  firstCategory,
+}) => {
+  const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
+    sortReducer,
+    { sort: SortEnum.Rating, products }
+  );
   const shouldReduceMotion = useReducedMotion();
 
   const setSort = (sort: SortEnum) => {
@@ -24,46 +35,75 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
 
   useEffect(() => {
     dispatchSort({
-      type: 'reset',
-      initialState: products
+      type: "reset",
+      initialState: products,
     });
   }, [products]);
 
   return (
     <div className={styles.page}>
       <div className={styles.title}>
-        <Htag tag="h1">{page.title}</Htag>
-        {products && <Tag color="grey" size="m" aria-label={products.length + 'элементов'}>{products.length}</Tag>}
-        <Sort
-          sort={sort}
-          setSort={setSort}
-        />
+        <h1 className={classNames(page.title + " h1")}>{page.title}</h1>
+        {products && (
+          <Tag color="grey" size="m" aria-label={products.length + "элементов"}>
+            {products.length}
+          </Tag>
+        )}
+        <Sort sort={sort} setSort={setSort} />
       </div>
 
       <div role="list">
-        {sortedProducts && sortedProducts.map(product => (<Product role="listitem" layout={shouldReduceMotion ? false : true} key={product._id} product={product} />))}
+        {sortedProducts &&
+          sortedProducts.map((product) => (
+            <Product
+              role="listitem"
+              layout={!shouldReduceMotion}
+              key={product._id}
+              product={product}
+            />
+          ))}
       </div>
 
-      {firstCategory === TopLevelCategory.Courses && page.hh && <>
-        <div className={styles.hhTitle}>
-          <Htag tag="h2">Вакансии - {page.category}</Htag>
-          {products && <Tag color="red" size="m">hh.ru</Tag>}
-        </div> <HhDataBlock {...page.hh} />
-      </>}
+      {firstCategory === TopLevelCategory.Courses && page.hh && (
+        <>
+          <div className={styles.hhTitle}>
+            <h2 className="h2">Вакансии - {page.category}</h2>
+            {products && (
+              <Tag color="red" size="m">
+                hh.ru
+              </Tag>
+            )}
+          </div>{" "}
+          <HhDataBlock {...page.hh} />
+        </>
+      )}
 
-      {page.advantages && page.advantages.length > 0 && page.advantages[0].title !== '' && <>
-        <Htag tag="h2">Преимущества</Htag>
-        <Advantages advantages={page.advantages} />
-      </>}
+      {page.advantages &&
+        page.advantages.length > 0 &&
+        page.advantages[0].title !== "" && (
+          <>
+            <h2 className="h2">Преимущества</h2>
+            <Advantages advantages={page.advantages} />
+          </>
+        )}
 
-      {page.seoText && <div className={styles.seoText} dangerouslySetInnerHTML={{ __html: page.seoText }} />}
+      {page.seoText && (
+        <div
+          className={styles.seoText}
+          dangerouslySetInnerHTML={{ __html: page.seoText }}
+        />
+      )}
 
-      {page.tags && <>
-        <Htag tag="h2">Получаемые навыки</Htag>
-        {page.tags.map(tag => (
-          <Tag key={tag} color="primary" mrgnBottom={true}>{tag}</Tag>
-        ))}
-      </>}
-    </div >
+      {page.tags && (
+        <>
+          <h2 className="h2">Получаемые навыки</h2>
+          {page.tags.map((tag) => (
+            <Tag key={tag} color="primary" mrgnBottom={true}>
+              {tag}
+            </Tag>
+          ))}
+        </>
+      )}
+    </div>
   );
 };

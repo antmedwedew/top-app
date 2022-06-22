@@ -1,17 +1,19 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import { withLayout } from "../../layout/Layout";
-import axios from 'axios';
+import axios from "axios";
 import { MenuItem } from "../../interfaces/menu.interface";
-import { TopLevelCategory, TopPageModel } from "../../interfaces/topPage.interface";
+import {
+  TopLevelCategory,
+  TopPageModel,
+} from "../../interfaces/topPage.interface";
 import { ProductModel } from "../../interfaces/product.interface";
 import { ParsedUrlQuery } from "querystring";
-import { firstLevelMenu } from "../../components/Menu/firstLevelMenu";
+import { firstLevelMenu } from "../../layout/Menu/firstLevelMenu";
 import { TopPageComponent } from "../../page-components/TopPageComponent/TopPageComponent";
 import { API } from "../../helpers/api";
 import Head from "next/head";
 import { Error404 } from "../404";
-
 
 interface TopPageProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -20,25 +22,27 @@ interface TopPageProps extends Record<string, unknown> {
   products: ProductModel[];
 }
 
-function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
+function TopPage({ firstCategory, page, products }: TopPageProps) {
   if (!page || !products) {
     return <Error404 />;
   }
 
-  return <>
-    <Head>
-      <title>{page.metaTitle}</title>
-      <meta name="description" content={page.metaDescription} />
-      <meta property="og:title" content={page.metaTitle} />
-      <meta property="og:description" content={page.metaDescription} />
-      <meta property="og:type" content="article" />
-    </Head>
-    <TopPageComponent
-      firstCategory={firstCategory}
-      page={page}
-      products={products}
-    />
-  </>;
+  return (
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name="description" content={page.metaDescription} />
+        <meta property="og:title" content={page.metaTitle} />
+        <meta property="og:description" content={page.metaDescription} />
+        <meta property="og:type" content="article" />
+      </Head>
+      <TopPageComponent
+        firstCategory={firstCategory}
+        page={page}
+        products={products}
+      />
+    </>
+  );
 }
 
 export default withLayout(TopPage);
@@ -49,66 +53,77 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   for (const m of firstLevelMenu) {
     const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-      firstCategory: m.id
+      firstCategory: m.id,
     });
-    paths = paths.concat(menu.flatMap(menu => menu.pages.map(page => `/${m.route}/${page.alias}`)));
+    paths = paths.concat(
+      menu.flatMap((menu) =>
+        menu.pages.map((page) => `/${m.route}/${page.alias}`)
+      )
+    );
   }
   return {
     paths,
-    fallback: true
+    fallback: true,
   };
 };
 
 // get menu, page alias, products
-export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<TopPageProps> = async ({
+  params,
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
   // get menu
-  const firstCategoryItem = firstLevelMenu.find(menu => menu.route === params.type);
+  const firstCategoryItem = firstLevelMenu.find(
+    (menu) => menu.route === params.type
+  );
 
   if (!firstCategoryItem) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
   try {
     const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-      firstCategory: firstCategoryItem.id
+      firstCategory: firstCategoryItem.id,
     });
 
     if (menu.length === 0) {
       return {
-        notFound: true
+        notFound: true,
       };
     }
 
     // get alias page
-    const { data: page } = await axios.get<TopPageModel>(API.topPage.byAlias + params.alias);
+    const { data: page } = await axios.get<TopPageModel>(
+      API.topPage.byAlias + params.alias
+    );
 
     // get products
-    const { data: products } = await axios.post<ProductModel[]>(API.product.find, {
-      category: page.category,
-      limit: 10
-    });
+    const { data: products } = await axios.post<ProductModel[]>(
+      API.product.find,
+      {
+        category: page.category,
+        limit: 10,
+      }
+    );
 
     return {
       props: {
         menu,
         firstCategory: firstCategoryItem.id,
         page,
-        products
-      }
+        products,
+      },
     };
   } catch {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 };
-
-
