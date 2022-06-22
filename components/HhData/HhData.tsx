@@ -12,7 +12,7 @@ export const HhDataBlock = ({
   juniorSalary,
   middleSalary,
   seniorSalary,
-}: HhData) => {
+}: HhData): JSX.Element => {
   return (
     <div className={styles.hh}>
       <Card className={styles.hhCard}>

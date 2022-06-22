@@ -3,7 +3,6 @@ import { TopPageAdvantage } from "../../interfaces/topPage.interface";
 import styles from "./Advantages.module.css";
 
 import { CheckRoundIcon } from "../../public/icons/CheckRoundIcon";
-import { P } from "../P/P";
 
 interface advantagesProps {
   advantages: TopPageAdvantage[];
@@ -17,7 +16,7 @@ export const Advantages: React.FC<advantagesProps> = ({ advantages }) => {
           <CheckRoundIcon />
           <div className={styles.title}>{advantage.title}</div>
           <span className={styles.line}></span>
-          <P size="l">{advantage.description}</P>
+          <p className="larger">{advantage.description}</p>
         </div>
       ))}
     </>

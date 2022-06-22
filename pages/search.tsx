@@ -4,7 +4,6 @@ import { withLayout } from "../layout/Layout";
 import axios from "axios";
 import { MenuItem } from "../interfaces/menu.interface";
 import { API } from "../helpers/api";
-import { Htag } from "../components";
 
 interface SearchProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -14,7 +13,7 @@ interface SearchProps extends Record<string, unknown> {
 function Search() {
   return (
     <>
-      <Htag tag="h1">Search</Htag>
+      <h1 className="h1">Search</h1>
     </>
   );
 }

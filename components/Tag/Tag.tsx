@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import styles from "./Tag.module.css";
-import { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode } from "react";
 
 interface TagProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface TagProps extends HTMLAttributes<HTMLDivElement> {
   href?: string;
 }
 
-export const Tag = ({
+export const Tag: React.FC<TagProps> = ({
   size = "s",
   children,
   color = "ghost",
@@ -18,15 +18,13 @@ export const Tag = ({
   mrgnBottom = false,
   className,
   ...props
-}: TagProps) => {
+}) => {
   return (
     <div
       className={classNames(styles.tag, className, {
         [styles.small]: size == "s",
         [styles.middle]: size == "m",
-
         [styles.mrgnBottom]: mrgnBottom === true,
-
         [styles.ghost]: color == "ghost",
         [styles.red]: color == "red",
         [styles.grey]: color == "grey",

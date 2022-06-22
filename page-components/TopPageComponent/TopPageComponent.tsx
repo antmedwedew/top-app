@@ -1,13 +1,6 @@
 import { useReducedMotion } from "framer-motion";
 import React, { useEffect, useReducer } from "react";
-import {
-  Advantages,
-  HhDataBlock,
-  Htag,
-  Product,
-  Sort,
-  Tag,
-} from "../../components";
+import { Advantages, HhDataBlock, Product, Sort, Tag } from "../../components";
 import { SortEnum } from "../../components";
 import { sortReducer } from "../../components/Sort/sort.reducer";
 import { ProductModel } from "../../interfaces/product.interface";
@@ -17,6 +10,7 @@ import {
 } from "../../interfaces/topPage.interface";
 
 import styles from "./TopPageComponent.module.css";
+import classNames from "classnames";
 
 interface TopPageComponentProps {
   firstCategory: TopLevelCategory;
@@ -49,7 +43,7 @@ export const TopPageComponent: React.FC<TopPageComponentProps> = ({
   return (
     <div className={styles.page}>
       <div className={styles.title}>
-        <Htag tag="h1">{page.title}</Htag>
+        <h1 className={classNames(page.title + " h1")}>{page.title}</h1>
         {products && (
           <Tag color="grey" size="m" aria-label={products.length + "элементов"}>
             {products.length}
@@ -63,7 +57,7 @@ export const TopPageComponent: React.FC<TopPageComponentProps> = ({
           sortedProducts.map((product) => (
             <Product
               role="listitem"
-              layout={shouldReduceMotion ? false : true}
+              layout={!shouldReduceMotion}
               key={product._id}
               product={product}
             />
@@ -73,7 +67,7 @@ export const TopPageComponent: React.FC<TopPageComponentProps> = ({
       {firstCategory === TopLevelCategory.Courses && page.hh && (
         <>
           <div className={styles.hhTitle}>
-            <Htag tag="h2">Вакансии - {page.category}</Htag>
+            <h2 className="h2">Вакансии - {page.category}</h2>
             {products && (
               <Tag color="red" size="m">
                 hh.ru
@@ -88,7 +82,7 @@ export const TopPageComponent: React.FC<TopPageComponentProps> = ({
         page.advantages.length > 0 &&
         page.advantages[0].title !== "" && (
           <>
-            <Htag tag="h2">Преимущества</Htag>
+            <h2 className="h2">Преимущества</h2>
             <Advantages advantages={page.advantages} />
           </>
         )}
@@ -102,7 +96,7 @@ export const TopPageComponent: React.FC<TopPageComponentProps> = ({
 
       {page.tags && (
         <>
-          <Htag tag="h2">Получаемые навыки</Htag>
+          <h2 className="h2">Получаемые навыки</h2>
           {page.tags.map((tag) => (
             <Tag key={tag} color="primary" mrgnBottom={true}>
               {tag}

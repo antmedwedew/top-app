@@ -1,7 +1,6 @@
-import { HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 import { ReviewModel } from "../../interfaces/product.interface";
 import { Rating } from "..";
-import { P } from "..";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 
@@ -14,7 +13,11 @@ export interface ReviewProps extends HTMLAttributes<HTMLDivElement> {
   review: ReviewModel;
 }
 
-export const Review = ({ review, className, ...props }: ReviewProps) => {
+export const Review: React.FC<ReviewProps> = ({
+  review,
+  className,
+  ...props
+}) => {
   const { name, title, description, createdAt, rating } = review;
 
   return (
@@ -30,7 +33,9 @@ export const Review = ({ review, className, ...props }: ReviewProps) => {
       <div className={styles.rating}>
         <Rating rating={rating} />
       </div>
-      <P className={styles.description}>{description}</P>
+      <p className={classNames(styles.description + " medium")}>
+        {description}
+      </p>
     </div>
   );
 };

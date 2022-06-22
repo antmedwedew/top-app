@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { HTMLAttributes, useState } from "react";
+import React, { HTMLAttributes, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input, Rating, Textarea } from "..";
 import { API } from "../../helpers/api";
@@ -25,12 +25,12 @@ export interface IReviewSentResponse {
   message: string;
 }
 
-export const ReviewForm = ({
+export const ReviewForm: React.FC<ReviewFormProps> = ({
   productId,
   isOpeneed,
   className,
   ...props
-}: ReviewFormProps) => {
+}) => {
   const {
     register,
     control,
@@ -74,7 +74,7 @@ export const ReviewForm = ({
           placeholder="Имя"
           error={errors.name}
           tabIndex={isOpeneed ? 0 : -1}
-          aria-invalid={errors.name ? true : false}
+          aria-invalid={!!errors.name}
         />
         <Input
           {...register("title", {
@@ -83,7 +83,7 @@ export const ReviewForm = ({
           placeholder="Заголовок отзыва"
           error={errors.title}
           tabIndex={isOpeneed ? 0 : -1}
-          aria-invalid={errors.title ? true : false}
+          aria-invalid={!!errors.title}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -112,7 +112,7 @@ export const ReviewForm = ({
           error={errors.description}
           tabIndex={isOpeneed ? 0 : -1}
           aria-label="Текст отзыва"
-          aria-invalid={errors.description ? true : false}
+          aria-invalid={!!errors.description}
         />
         <div className={styles.submit}>
           <Button

@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, forwardRef, ForwardedRef } from "react";
+import React, { ButtonHTMLAttributes, ForwardedRef, forwardRef } from "react";
 import styles from "./Button.module.css";
 import classNames from "classnames";
 import { ArrowIcon } from "../../../public/icons/ArrowIcon";

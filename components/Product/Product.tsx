@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
-import { Button, Card, Htag, Rating, Tag, P, Review, ReviewForm } from "..";
+import { Button, Card, Rating, Tag, Review, ReviewForm } from "..";
 import { ProductModel } from "../../interfaces/product.interface";
 import { decOfNumber, priceRu } from "../../helpers/helpers";
 import { motion } from "framer-motion";
@@ -61,9 +61,9 @@ export const Product = motion(
                 height={70}
               />
             </div>
-            <Htag className={styles.title} tag="h3">
+            <h3 className={classNames(styles.title + " h3")}>
               {product.title}
-            </Htag>
+            </h3>
             <div className={styles.price}>
               <span>
                 <span className="visualHidden">Цена</span>
@@ -114,7 +114,9 @@ export const Product = motion(
             <div className={styles.lineBlock}>
               <hr className={styles.line} />
             </div>
-            <P className={styles.description}>{product.description}</P>
+            <p className={classNames(styles.description + " medium")}>
+              {product.description}
+            </p>
             <div className={styles.feature}>
               {product.characteristics.map((characteristic) => (
                 <div
@@ -136,13 +138,13 @@ export const Product = motion(
                 {product.advantages && (
                   <div className={styles.advantages}>
                     <div className={styles.advBlockTitle}>Преимущества</div>
-                    <P>{product.advantages}</P>
+                    <p className="medium">{product.advantages}</p>
                   </div>
                 )}
                 {product.disadvantages && (
                   <div className={styles.disadvantages}>
                     <div className={styles.advBlockTitle}>Недостатки</div>
-                    <P>{product.disadvantages}</P>
+                    <p className="medium">{product.disadvantages}</p>
                   </div>
                 )}
               </div>

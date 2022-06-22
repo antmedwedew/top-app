@@ -14,7 +14,12 @@ export enum SortEnum {
   Price,
 }
 
-export const Sort = ({ sort, setSort, className, ...props }: SortProps) => {
+export const Sort: React.FC<SortProps> = ({
+  sort,
+  setSort,
+  className,
+  ...props
+}) => {
   return (
     <div className={classNames(styles.sort, className)} {...props}>
       <div className={styles.sortName} id="sort">

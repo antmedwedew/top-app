@@ -9,7 +9,7 @@ import {
 } from "../../interfaces/topPage.interface";
 import { ProductModel } from "../../interfaces/product.interface";
 import { ParsedUrlQuery } from "querystring";
-import { firstLevelMenu } from "../../components/Menu/firstLevelMenu";
+import { firstLevelMenu } from "../../layout/Menu/firstLevelMenu";
 import { TopPageComponent } from "../../page-components/TopPageComponent/TopPageComponent";
 import { API } from "../../helpers/api";
 import Head from "next/head";
