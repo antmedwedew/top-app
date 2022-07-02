@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
-import { Button, Card, Rating, Tag, Review, ReviewForm } from "..";
+import { Button, Card, Rating, Review, ReviewForm, Tag } from "..";
 import { ProductModel } from "../../interfaces/product.interface";
 import { decOfNumber, priceRu } from "../../helpers/helpers";
 import { motion } from "framer-motion";
